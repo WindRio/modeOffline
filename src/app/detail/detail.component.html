@@ -1,0 +1,38 @@
+<div class="container">
+  <nz-table #basicTable [nzData]="listOfData" [nzShowPagination]="false" *ngIf="!isDetail">
+    <thead>
+      <tr>
+        <th>Vụ án</th>
+        <th>Mo ta</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of basicTable.data">
+        <td>{{ data.name }}</td>
+        <td>{{ data.description }}</td>
+        <td>
+          <button nz-button nzType="primary" (click)="onViewDetail(data.id)">View</button>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+  <div *ngIf="isDetail">
+    <div style="margin-bottom: 4px;">
+      <button nz-button (click)="isDetail = false" style="margin-right: 2px;">Back</button>
+      <button nz-button nzType="primary" (click)="onDownload()">Download</button>
+    </div>
+    <h1>Name: {{detailData.name}}</h1>
+    <h1>Description: {{detailData.description}}</h1>
+    <div nz-row>
+      <div nz-col *ngFor="let item of detailData.documents" style="margin-left: 2px;">
+        <nz-card style="width:200px;" [nzCover]="coverTemplate">
+          <nz-card-meta [nzTitle]="item.name" nzDescription="This is the description"></nz-card-meta>
+        </nz-card>
+        <ng-template #coverTemplate>
+          <img alt="example" [src]="item.url" />
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>

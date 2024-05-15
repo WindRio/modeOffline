@@ -1,0 +1,7 @@
+<div class="container">
+  <input nz-input placeholder="userName" [(ngModel)]="user.username" type="text" />
+  <input nz-input placeholder="password" [(ngModel)]="user.password" type="text" />
+
+  <button nz-button nzType="primary" (click)="onLogin()">Login</button>
+  <button nz-button (click)="onSwitchOffline()">Switch mode offline</button>
+</div>
